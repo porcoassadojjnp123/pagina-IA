@@ -6,21 +6,47 @@ const textoResultados = document.querySelector(".texto-resultados");
 
 const perguntas = [
     {
-        enunciado: "Assim que saiu da escola Gabriel se depara com uma nova tecnologia, um chat que consegue responder todas as dúvidas que uma pessoa pode ter, o chat também gera imagens e áudios hiper-realistas. Qual o primeiro pensamento de Gabriel?",
+        enunciado: "Quem venceu as eleições de 2018?",
 
         alternativas: [
-            "isso é assustador!",
-            "isso é maravilhoso!",
+            "Bolsonaro",
+            "Fenando Haddad",
         ]
     },
     
     {
-        enunciado: "Com a descoberta desta tecnologia uma professora de tecnologia da escola decidiu fazer uma sequência de aulas sobre IA. No fim de uma aula ela pede que Gabriel escreva um trabalho sobre o uso de tecnologia em sala de aula. Qual atitude Gabriel toma?"
+        enunciado:"Qual foi a quantidade de votos do ganhador?",
        
         alternativas:[ 
-            "Utiliza uma ferramenta de busca na internet que utiliza IA para que ela ajude a encontrar informações relevantes para o trabalho e explique numa linguagem que facilite o entendimento.",
-            "Escreve o trabalho com base nas conversas que teve com colegas, algumas pesquisas na internet e conhecimentos próprios sobre o tema.",
+            "57,8 milhões de votos.",
+            "47 milhões de votos .",
         ]
-}
+},
+{
+    enunciado: "Qual era o partido de Jair Messias Bolsonaro?",
+
+    alternativas:[
+        "PSL.",
+        "PSOL.",
+    ]
+    
+},
+{
+    enunciado: "Qual era o partido de Fenando Haddad?",
+
+    alternativas:[
+        "PT.",
+        "PDT.",
+    ]
+    
+},
 ];
 
+let atual = 0;
+let perguntaAtual;
+
+function mostraPergunta() {
+    perguntaAtual = perguntas[atual]
+    caixaPerguntas.textContent = perguntaAtual.enunciado;
+    mostraAlternartivas();
+}
