@@ -1,8 +1,8 @@
 const caixaPrincipal = document.querySelector(".caixa-principal");
 const caixaPerguntas = document.querySelector(".caixa-perguntas");
 const caixaAlternativas = document.querySelector(".caixa-alternativas");
-const caixaResultados = document.querySelector(".caixa-resultados");
-const textoResultados = document.querySelector(".texto-resultados");
+const caixaResultado = document.querySelector(".caixa-resultado");
+const textoResultado = document.querySelector(".texto-resultado");
 
 const perguntas = [
     {
@@ -26,11 +26,11 @@ const perguntas = [
        
         alternativas:[ 
             {
-            texto: "57,8 milhões de votos.",
+            texto: "57,8 milhões de votos",
             afirmacao: "afirmação"
         },
            {
-            texto: "47 milhões de votos .",
+            texto: "47 milhões de votos",
             afirmacao: "afirmação"
            }
             
@@ -41,11 +41,11 @@ const perguntas = [
 
     alternativas:[
         {
-        texto:"PSL.",
+        texto:"PSL",
         afirmacao: "afirmação"
     },
         {
-            texto:"PSOL.",
+            texto:"PSOL",
             afirmacao:"afirmação"
         }
 
@@ -57,36 +57,52 @@ const perguntas = [
 
     alternativas:[
         {
-        texto:"PT.",
+        texto:"PT",
         afirmacao: "afirmação"
     },
     {
-        texto: "PDT.",
-        afirmação: "afirmação"
+        texto: "PDT",
+        afirmacao: "afirmação"
     }
        
     ]
     
 },
+{
+    enunciado: "Em 2018  o candidato Jair Messias Bolsonaro venceu o candidato Fenando Haddad com 57,8 milhões de votos o candidato Jair Messias Bolsonaro do PSL venceu o candidato Fenando Haddad do PT"
+}
 ];
 
 let atual = 0;
 let perguntaAtual;
+let historiaFinal = "";
 
 function mostraPergunta() {
+    if(atual >= perguntas.length){
+        mostraResutado();
+        return;
+    }
     perguntaAtual = perguntas[atual]
     caixaPerguntas.textContent = perguntaAtual.enunciado;
-    mostraAlternartivas();
+    caixaAlternativas.textContent = "";
+    mostraAlternativas();
 }
-function mostraAlternartivas() {
-    for(const alternativa of perguntaAtual.alternativa){
+function mostraAlternativas() {
+    for(const alternativa of perguntaAtual.alternativas){
         const botaoAlternativas = document.createElement("button");
         botaoAlternativas.textContent = alternativa.texto;
-        botaoAlternativas.addEventListener("click",function(){
-            atual++;
-            mostraPergunta();
-        });
+        botaoAlternativas.addEventListener("click", ()=>respsotaSelecionada(alternativa));
         caixaAlternativas.appendChild(botaoAlternativas);
     }
+}
+
+function respsotaSelecionada(opcaoSelecionada){
+    atual++;
+    mostraPergunta();
+}
+function mostraResutado(){
+  caixaResultado.textContent = ".Em 2018  o candidato Jair Messias Bolsonaro venceu o candidato Fenando Haddad com 57,8 milhões de votos o candidato Jair Messias Bolsonaro do PSL venceu o candidato Fenando Haddad do PT..";
+  textoResultado.textContent += historiaFinal += afirmacoes + " ";
+  caixaAlternativas.textContent = "";
 }
 mostraPergunta();
